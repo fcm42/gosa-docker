@@ -42,9 +42,10 @@ RUN groupadd -r www-data 2>/dev/null || true \
 RUN cd /tmp && \
     wget -O gosa.tar.gz "https://github.com/gosa-project/gosa-core/archive/refs/tags/${GOSA_VERSION}.tar.gz" && \
     tar -xzf gosa.tar.gz && \
+    mkdir -p /var/www && \
     mv gosa-core-${GOSA_VERSION} /var/www/gosa && \
     chown -R www-data:www-data /var/www/gosa && \
-    rm ${GOSA_VERSION}.tar.gz
+    rm gosa.tar.gz
 
 # create directories
 RUN mkdir -p /var/lib/gosa \
