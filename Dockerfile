@@ -3,7 +3,7 @@ FROM debian:12-slim
 
 LABEL maintainer="Frank Moeller <fcm42@protonmail.com>"
 LABEL description="GOsa² LDAP Administration Tool with PHP-FPM"
-LABEL version="1.0"
+LABEL version="1.0.1"
 
 # environment
 ENV DEBIAN_FRONTEND=noninteractive
