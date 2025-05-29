@@ -17,6 +17,7 @@ mkdir -p /var/lib/gosa/sessions
 mkdir -p /var/lib/gosa/tmp
 mkdir -p /var/cache/gosa
 mkdir -p /var/spool/gosa
+mkdir -p /etc/gosa
 
 # Erstelle GOsa Konfiguration basierend auf Umgebungsvariablen
 cat > /etc/gosa/gosa.conf << EOF
