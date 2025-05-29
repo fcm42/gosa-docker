@@ -3,7 +3,7 @@ FROM debian:12-slim
 
 LABEL maintainer="Frank Moeller <fcm42@protonmail.com>"
 LABEL description="GOsa² LDAP Administration Tool with PHP-FPM"
-LABEL version="1.0.2"
+LABEL version="1.0.3"
 
 # environment
 ENV DEBIAN_FRONTEND=noninteractive
@@ -77,5 +77,6 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
     CMD /usr/bin/php-fpm${PHP_VERSION} -t || exit 1
 
 # entrypoint
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["php-fpm8.2", "--nodaemonize", "--fpm-config", "/etc/php/8.2/fpm/php-fpm.conf"]
+#ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+#CMD ["php-fpm8.2", "--nodaemonize", "--fpm-config", "/etc/php/8.2/fpm/php-fpm.conf"]
+ENTRYPOINT ["/bin/sh"]
