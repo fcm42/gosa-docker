@@ -53,7 +53,7 @@ RUN mkdir -p /var/lib/gosa \
     /var/cache/gosa \
     /etc/gosa \
     /run/php \
-    && chown -R www-data:www-data /var/lib/gosa /var/spool/gosa /var/cache/gosa /run/php
+    && chown -R www-data:www-data /etc/gosa /var/lib/gosa /var/spool/gosa /var/cache/gosa /run/php
 
 # copy configs
 COPY config/php-fpm.conf /etc/php/${PHP_VERSION}/fpm/pool.d/gosa.conf
