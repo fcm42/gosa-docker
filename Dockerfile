@@ -53,7 +53,11 @@ RUN mkdir -p /var/lib/gosa \
     /var/cache/gosa \
     /etc/gosa \
     /run/php \
-    && chown -R www-data:www-data /etc/gosa /var/lib/gosa /var/spool/gosa /var/cache/gosa /run/php
+    /var/log/php \
+    && chown -R www-data:www-data /etc/gosa /var/lib/gosa /var/spool/gosa /var/cache/gosa /run/php /var/log/php
+
+# change log dir
+RUN sed -i -e "s/^error_log = .*/error_log = \/var\/log\/php\/php8.2-fpm.log/" /etc/php/${PHP_VERSION}/fpm/php-fpm.conf 
 
 # copy configs
 COPY config/php-fpm.conf /etc/php/${PHP_VERSION}/fpm/pool.d/gosa.conf
