@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y \
     php${PHP_VERSION}-imap \
     gettext \
     sudo \
-    net-utils \
+    net-tools \
     && rm -rf /var/lib/apt/lists/*
 
 # create group and user www-data
