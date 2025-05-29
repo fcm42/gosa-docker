@@ -1,9 +1,9 @@
 # Dockerfile
 FROM debian:12-slim
 
-LABEL maintainer="Frank Moeller <fcm42@protonmail.com>"
+LABEL maintainer="Frank Moeller <moellerf@gmx.net>"
 LABEL description="GOsa² LDAP Administration Tool with PHP-FPM"
-LABEL version="1.0.4"
+LABEL version="1.0.5"
 
 # environment
 ENV DEBIAN_FRONTEND=noninteractive
@@ -51,10 +51,12 @@ RUN cd /tmp && \
 RUN mkdir -p /var/lib/gosa \
     /var/spool/gosa \
     /var/cache/gosa \
-    /etc/gosa \
     /run/php \
     /var/log/php \
-    && chown -R www-data:www-data /etc/gosa /var/lib/gosa /var/spool/gosa /var/cache/gosa /run/php /var/log/php
+    && chown -R www-data:www-data /var/lib/gosa /var/spool/gosa /var/cache/gosa /run/php /var/log/php
+
+# create gosa config dir
+RUN mkdir -p /etc/gosa
 
 # change log dir
 RUN sed -i -e "s/^error_log = .*/error_log = \/var\/log\/php\/php8.2-fpm.log/" /etc/php/${PHP_VERSION}/fpm/php-fpm.conf 
@@ -66,6 +68,9 @@ COPY config/entrypoint.sh /usr/local/bin/entrypoint.sh
 
 # set permissions
 RUN chmod +x /usr/local/bin/entrypoint.sh
+RUN chown -R root:www-data /etc/gosa
+RUN chmod 750 /etc/gosa
+RUN chmod 640 /etc/gosa/gosa.conf
 
 # expose port for php-fpm
 EXPOSE 9001
